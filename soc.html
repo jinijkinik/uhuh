@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise Page</title>
+  <style>
+    /* Reset default margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background styling */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #003300, #000000);
+      font-family: Arial, sans-serif;
+      color: #39ff14;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Sparkling 3D Text styling with Showcard Gothic */
+    .title {
+      font-size: 3em;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: 'Showcard Gothic', sans-serif;
+      text-shadow: 2px 2px 5px rgba(0, 255, 0, 0.3), -2px -2px 5px rgba(0, 255, 0, 0.3);
+      animation: sparkle 1s infinite;
+      margin-bottom: 20px;
+    }
+
+    /* Subtitle with Courier New */
+    .subtitle {
+      font-family: 'Courier New', monospace;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    /* Button container */
+    .button-container {
+      text-align: center;
+      position: relative;
+    }
+
+    /* Sparkle animation */
+    @keyframes sparkle {
+      0%, 100% { text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 40px #39ff14; }
+      50% { text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 15px #39ff14, 0 0 20px #39ff14; }
+    }
+
+    /* Button styling */
+    .gift-button, .no-thanks-button {
+      font-size: 20px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+
+    /* Receive Gift button styling with Chiller font */
+    .gift-button {
+      background: #006600;
+      color: #39ff14;
+      font-family: 'Chiller', sans-serif;
+    }
+
+    .gift-button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Teleport button on click */
+    .gift-button:active {
+      transform: scale(1.1) translateX(calc(50vw - 50%)) translateY(calc(50vh - 50%));
+    }
+
+    /* No Thanks button with Cooper Black font and neon effect */
+    .no-thanks-button {
+      color: #39ff14;
+      background: black;
+      border: 2px solid #39ff14;
+      box-shadow: 0 0 15px #39ff14;
+      font-family: 'Cooper Black', sans-serif;
+    }
+
+    .no-thanks-button:hover {
+      box-shadow: 0 0 30px #39ff14, 0 0 45px #39ff14;
+    }
+
+    /* Firework styling */
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: yellow;
+      border-radius: 50%;
+      opacity: 0;
+      animation: firework 0.8s forwards;
+    }
+
+    /* Firework animation */
+    @keyframes firework {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(5); opacity: 0; }
+    }
+
+    /* Video styling */
+    #videoContainer {
+      display: none;
+      margin-top: 20px;
+    }
+
+    video {
+      width: 560px;
+      height: 315px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+    }
+
+    /* GIF positions */
+    .corner-gif {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
+
+    .top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .top-right {
+      top: 0;
+      right: 0;
+    }
+
+    .bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+
+    .bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Corner GIFs -->
+  <img src="heh.gif" alt="Top Left GIF" class="corner-gif top-left">
+  <img src="hoh.gif" alt="Top Right GIF" class="corner-gif top-right">
+  <img src="hah.gif" alt="Bottom Left GIF" class="corner-gif bottom-left">
+  <img src="huh.gif" alt="Bottom Right GIF" class="corner-gif bottom-right">
+
+  <div class="button-container">
+    <h1 class="title">🎉 Happy Birthday SOC! 🎉</h1>
+    <p class="subtitle">HPBD skibidi guy. I prepared you a sigma gift, hope you'll get more aura this year:)).Choose your wisely:</p>
+    
+    <!-- Buttons -->
+    <button class="gift-button" onclick="teleportButton()">Receive Gift</button>
+    <button class="no-thanks-button" onclick="showVideo()">No Thanks</button>
+    
+    <!-- Video container -->
+    <div id="videoContainer">
+      <video id="birthdayVideo" controls autoplay>
+        <source src="soc.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    function teleportButton() {
+      const button = document.querySelector(".gift-button");
+      const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
+      const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
+      button.style.position = 'absolute';
+      button.style.left = `${randomX}px`;
+      button.style.top = `${randomY}px`;
+    }
+
+    function showVideo() {
+      document.getElementById("videoContainer").style.display = "block";
+      document.getElementById("birthdayVideo").play();
+      createFireworks();
+    }
+
+    function createFireworks() {
+      for (let i = 0; i < 10; i++) {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.left = `${Math.random() * 100}%`;
+        firework.style.top = `${Math.random() * 100}%`;
+        firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        document.body.appendChild(firework);
+
+        setTimeout(() => firework.remove(), 800);
+      }
+    }
+  </script>
+
+</body>
+</html>
